@@ -1,12 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import OverlayMenu from "./OverlayMenu";
 
-const HeroSection = () => {
+export default function HeroSection() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="relative h-screen w-full overflow-hidden bg-[#161220] text-white">
-    {/* <div className="relative h-screen w-full overflow-hidden bg-[#ff00b8] text-white"> */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -23,7 +26,7 @@ const HeroSection = () => {
       </motion.div>
 
       <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between px-6 py-4 border-b border-white">
-        <div className="flex items-center space-x-2">
+        <div>
           <Image
             src="/images/white_logo.png"
             alt="Kenya Creates Logo"
@@ -31,16 +34,19 @@ const HeroSection = () => {
             height={40}
           />
         </div>
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-4">
           <span className="text-sm font-satoshi">Menu</span>
-          <button className="h-4 w-6 flex flex-col justify-between items-center">
-            <span className="h-[2px] w-full bg-white"></span>
-            <span className="h-[2px] w-full bg-white"></span>
+          <button
+            onClick={() => {setMenuOpen(true); console.log("Menu Opened")}}
+            className="h-4 w-6 flex flex-col justify-between items-center"
+          >
+            <span className="h-[2px] w-full bg-white" />
+            <span className="h-[2px] w-full bg-white" />
           </button>
         </div>
       </div>
 
-      <div className="relative z-1 flex h-full w-full flex-col items-center justify-between px-4 text-center">
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-between px-4 text-center">
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -63,8 +69,8 @@ const HeroSection = () => {
           </span>
         </motion.p>
       </div>
+
+      <OverlayMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
     </div>
   );
-};
-
-export default HeroSection;
+}
