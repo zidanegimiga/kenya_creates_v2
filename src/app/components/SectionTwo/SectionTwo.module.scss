@@ -1,0 +1,15 @@
+.imageContainer {
+    position: relative;
+    width: 40%;
+    height: 100dvh;
+}
+
+.textContainer {
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    height: 100dvh;
+    gap: 20px;
+}
