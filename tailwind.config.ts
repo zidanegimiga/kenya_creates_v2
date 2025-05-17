@@ -14,6 +14,8 @@ const config: Config = {
         "overlay-pattern": "url('/images/pattern.svg')",
         "right-pattern": "url('/images/pattern_right.svg')",
         "arrow": "url('/images/arrow.svg')",
+        "adele_home_bg": "url('/images/adele_home_bg.png')",
+        "test_bg": "url('/images/test-bg.png')",
       },
     },
   },
