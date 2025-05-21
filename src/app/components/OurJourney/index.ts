@@ -1,0 +1,1 @@
+export { JourneyCard, default, type JourneyCardProps } from './OurJourneyComponent'
