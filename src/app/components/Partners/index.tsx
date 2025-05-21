@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
 interface Partner {
   id: string;
@@ -16,7 +16,7 @@ const partners: Partner[] = [
   {
     id: "iris",
     name: "IRIS",
-    logoSrc: "/images/iris_logo.png",
+    logoSrc: "/images/IRIS-LOGO.png",
     description:
       "The International Resource for Impact and Storytelling ( IRIS ) - whose commitment to independent storytelling and community wisdom has been essential in bringing Kenya Creates to life.",
     url: "https://storyforimpact.io/",
@@ -45,17 +45,17 @@ const containerVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      when: 'beforeChildren',
+      when: "beforeChildren",
       staggerChildren: 0.2,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
-}
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-}
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
 
 export default function Partners() {
   return (
@@ -77,10 +77,7 @@ export default function Partners() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Desktop: sticky left column */}
-          <motion.div
-            variants={itemVariants}
-            className="hidden md:block"
-          >
+          <motion.div variants={itemVariants} className="hidden md:block">
             <div className="sticky top-24">
               <p className="font-satoshi text-base text-white mb-2">
                 Our Partners
@@ -94,16 +91,28 @@ export default function Partners() {
           {/* Partners list */}
           <div className="space-y-16">
             {partners.map((p) => (
-              <motion.div key={p.id} variants={itemVariants} className="space-y-4">
+              <motion.div
+                key={p.id}
+                variants={itemVariants}
+                className="space-y-4"
+              >
                 {/* logo + arrow */}
                 <div className="flex items-center justify-between">
-                  <Image
-                    src={p.logoSrc}
-                    alt={p.name}
-                    width={120}
-                    height={60}
-                    className="object-contain"
-                  />
+                  <Link
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className=""
+                    aria-label={`Visit ${p.name}`}
+                  >
+                    <Image
+                      src={p.logoSrc}
+                      alt={p.name}
+                      width={120}
+                      height={60}
+                      className="object-contain"
+                    />
+                  </Link>
                   <Link
                     href={p.url}
                     target="_blank"
@@ -141,5 +150,5 @@ export default function Partners() {
         </div>
       </div>
     </motion.section>
-  )
+  );
 }
