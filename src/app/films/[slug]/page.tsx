@@ -1,21 +1,22 @@
 // src/app/films/[slug]/page.tsx
-import { Metadata } from "next"
-import Image from "next/image"
-import { notFound } from "next/navigation"
-import YouTubeEmbed from "@/app/components/YoutubeEmbedder"
-import DirectorSection from "@/app/components/DirectorSection"
-import Footer from "@/app/components/Footer"
-import GallerySection from "@/app/components/Gallery"
-import NextFilmsSection from "@/app/components/NextFilms"
-import { all_films } from "@/data/films"
+import { Metadata } from 'next'
+import Image from 'next/image'
+import { notFound } from 'next/navigation'
+import YouTubeEmbed from '@/app/components/YoutubeEmbedder'
+import DirectorSection from '@/app/components/DirectorSection'
+import Footer from '@/app/components/Footer'
+import GallerySection from '@/app/components/Gallery'
+import NextFilmsSection from '@/app/components/NextFilms'
+import { all_films } from '@/data/films'
 
 interface Params {
   slug: string
 }
 
+// Next’s PageProps requires both `params` and `searchParams` (not optional)
 interface FilmPageProps {
   params: Params
-  searchParams?: { [key: string]: string | string[] | undefined }
+  searchParams: Record<string, string | string[] | undefined>
 }
 
 export async function generateMetadata({
@@ -34,7 +35,11 @@ export async function generateMetadata({
   }
 }
 
-export default function FilmDetailPage({ params }: FilmPageProps) {
+export default function FilmDetailPage({
+  params,
+  searchParams, // now included
+}: FilmPageProps) {
+  // (you can ignore searchParams inside if you don’t need them)
   const film = all_films.find((f) => f.slug === params.slug)
   if (!film) {
     notFound()
