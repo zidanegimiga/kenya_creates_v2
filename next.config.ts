@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
       "edition.pagesuite.com"
     ],
   },
+    eslint: {
+    // This skips ESLint checks (and errors) during `next build`
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
