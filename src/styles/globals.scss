@@ -59,3 +59,33 @@ body {
 }
 
 
+/* === Reveal Footer Section === */
+.revealFooter {
+  /* adjust to your actual footer height */
+  --footer-height: 300px;
+
+  ul.revealFooter__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: grid;
+    /* row1 = viewport, row2 = footer height */
+    grid-template-rows: 100vh var(--footer-height);
+  }
+
+  ul.revealFooter__list li.revealFooter__item {
+    position: sticky;
+    top: 0;
+    padding-top: calc(var(--index) * var(--footer-height));
+  }
+
+  /* first <li>: index 0 → no padding */
+  #section1 { --index: 0; }
+
+  /* second <li>: index 1 → push it down by footer height */
+  #section2 { --index: 1; }
+}
+
+
+
