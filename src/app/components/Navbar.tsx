@@ -17,9 +17,7 @@ export default function Navbar() {
   const isJourney = pathname === '/our-journey';
   const isFilms   = /^\/films(\/|$)/.test(pathname);
 
-  // overlay menu open state
   const [menuOpen, setMenuOpen] = useState(false);
-  // hide/show on scroll
   const [showHeader, setShowHeader] = useState(true);
 
   useEffect(() => {
@@ -39,25 +37,12 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Background class per route
-  let bgClass: string;
-  if (isJourney) {
-    bgClass = 'bg-[#EEE2FF] shadow-md';
-  } else {
-    // Home, About, Films → always transparent
-    bgClass = 'bg-transparent';
-  }
+  // Always transparent on home/about/films; pale lilac on Journey
+  const bgClass = isJourney ? 'bg-[#EEE2FF] shadow-md' : 'bg-transparent';
+  // Menu text/icon color: lilac on Journey; white elsewhere
+  const menuColor = isJourney ? 'text-[#9E005F]' : 'text-white';
 
-  // Menu text/icon color per route
-  let menuColor: string;
-  if (isJourney) {
-    menuColor = 'text-[#9E005F]';
-  } else {
-    // Home, About, Films → white
-    menuColor = 'text-white';
-  }
-
-  // Logo per route
+  // Logo src for Journey vs. default
   const logoSrc = isJourney
     ? '/images/kenya_creates_red_logo.png'
     : '/images/white_logo.png';
@@ -74,64 +59,52 @@ export default function Navbar() {
           ${bgClass}
         `}
       >
-        {/* Logo */}
-        <Link href="/">
-          <Image
-            src={logoSrc}
-            alt="Kenya Creates Logo"
-            width={120}
-            height={40}
-            className="object-contain"
-          />
-        </Link>
-
+        {/* Left side: Logo or Back Arrow on film pages */}
         {isFilms ? (
-          // ─── Films pages: back arrow + primary links ───
-          <nav className="flex items-center space-x-3">
-            <button
-              onClick={() => router.back()}
-              className="p-2 bg-white rounded-full"
-              aria-label="Go back"
-            >
-              <ArrowLeftIcon className="w-6 h-6 text-[#C80096]" />
-            </button>
-            <Link
-              href="/"
-              className="px-3 py-1 bg-white rounded font-satoshi text-[#C80096] hover:underline"
-            >
-              Home
-            </Link>
-            <Link
-              href="/our-journey"
-              className="px-3 py-1 bg-white rounded font-satoshi text-[#C80096] hover:underline"
-            >
-              Our Journey
-            </Link>
-            <Link
-              href="/about-us"
-              className="px-3 py-1 bg-white rounded font-satoshi text-[#C80096] hover:underline"
-            >
-              About Us
-            </Link>
-            <Link
-              href="/about-us#form"
-              className="px-3 py-1 bg-white rounded font-satoshi text-[#C80096] hover:underline"
-            >
-              Join The Movement
-            </Link>
-          </nav>
-        ) : (
           <button
-            onClick={() => setMenuOpen(true)}
-            className={`flex items-center space-x-2 ${menuColor}`}
-            aria-label="Open menu"
+            onClick={() => router.back()}
+            className="p-2 bg-white rounded-full"
+            aria-label="Go back"
           >
-            <span className={`font-satoshi text-base md:text-xl ${menuColor}`}>
-              Menu
-            </span>
-            <Bars3Icon className={`w-6 h-6 ${menuColor}`} />
+            <ArrowLeftIcon className="w-6 h-6 text-[#C80096]" />
           </button>
+        ) : (
+          <Link href="/">
+            <Image
+              src={logoSrc}
+              alt="Kenya Creates Logo"
+              width={120}
+              height={40}
+              className="object-contain"
+            />
+          </Link>
         )}
+
+        {/* Right side: Menu button (always present) */}
+        <button
+          onClick={() => setMenuOpen(true)}
+          className={`
+            flex items-center space-x-2
+            ${isFilms ? 'bg-white px-3 py-1 rounded' : ''}
+            ${isFilms ? '' : menuColor}
+          `}
+          aria-label="Open menu"
+        >
+          <span
+            className={`
+              font-satoshi text-base md:text-xl
+              ${isFilms ? 'text-[#C80096]' : menuColor}
+            `}
+          >
+            Menu
+          </span>
+          <Bars3Icon
+            className={`
+              w-6 h-6
+              ${isFilms ? 'text-[#C80096]' : menuColor}
+            `}
+          />
+        </button>
       </header>
 
       <OverlayMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
