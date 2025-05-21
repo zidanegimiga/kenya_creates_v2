@@ -3,16 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "fetch-images": "node scripts/fetch-og-images.js",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "framer-motion": "^12.11.3",
     "next": "15.3.2",
+    "open-graph-scraper": "^6.10.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -20,8 +24,10 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
+    "cheerio": "^1.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
+    "node-fetch": "^3.3.2",
     "postcss": "^8.4.31",
     "sass": "^1.88.0",
     "tailwindcss": "^3.4.17",

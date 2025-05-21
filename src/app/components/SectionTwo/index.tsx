@@ -1,12 +1,14 @@
+// src/app/components/SectionTwo.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import styles from './SectionTwo.module.scss'
 
 const slides = [
   {
+    key: 'one',
     imageSrc: '/images/section2_portrait.png',
     headingGradient: true,
     body: `Kenya Creates is here to change that. Our films speak to the heart,
@@ -14,6 +16,7 @@ const slides = [
       to navigate life with confidence.`,
   },
   {
+    key: 'two',
     imageSrc: '/images/section2_ii.png',
     headingGradient: false,
     body: `It’s not about dictating choices; it’s about recognizing what’s real
@@ -24,49 +27,90 @@ const slides = [
 export default function SectionTwo() {
   const [index, setIndex] = useState(0)
 
+  // slide timer
   useEffect(() => {
     const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % slides.length)
+      setIndex(i => (i + 1) % slides.length)
     }, 5000)
     return () => clearInterval(timer)
   }, [])
 
-  const { imageSrc, headingGradient, body } = slides[index]
+  const { key, imageSrc, headingGradient, body } = slides[index]
+
+  // common variants
+  const fadeIn = { hidden: { opacity: 0, x: 30 }, visible: { opacity: 1, x: 0 } }
+  const fadeOut = { opacity: 0, x: -30, transition: { duration: 0.4 } }
 
   return (
-    <section className="bg-[#1E1F1D] h-dvh">
-      <div className="flex">
-        <div className={styles.imageContainer}>
-          <Image
-            src={imageSrc}
-            // src={'/images/section2_portrait.png'}
-            alt=""
-            className="object-cover object-center"
-            priority
-            fill
-          />
-        </div>
-
-        {/* ── Right half: text & loader ── */}
-        <div className={styles.textContainer}>
-          <h2
-            className={`
-              font-fraunces 
-              text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
-              leading-tight
-              ${headingGradient
-                ? 'bg-gradient-to-r from-pink-400 to-orange-500 bg-clip-text text-transparent'
-                : 'text-[#F5A4D4]'}
-            `}
+    <section className="bg-[#1E1F1D] h-dvh overflow-hidden">
+      <div className="flex h-full">
+        {/* ── IMAGE (hidden on mobile) ── */}
+        <AnimatePresence initial={false} mode="wait">
+          <motion.div
+            key={key}
+            className={`${styles.imageContainer} hidden md:block`}
+            variants={{
+              hidden: { opacity: 0, x: -50 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+              exit: fadeOut,
+            }}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
           >
-            For too long, reproductive health has been framed in a way that feels
-            impersonal and inaccessible.
-          </h2>
+            <Image
+              src={imageSrc}
+              alt=""
+              fill
+              className="object-cover object-center"
+              priority
+            />
+          </motion.div>
+        </AnimatePresence>
 
-          <p className="mt-6 font-satoshi text-lg sm:text-lg md:text-xl text-[#9F8686] max-w-prose leading-relaxed w-8/12">
-            {body}
-          </p>
+        {/* ── TEXT + LOADER ── */}
+        <div className={styles.textContainer}>
+          <AnimatePresence initial={false} mode="wait">
+            <motion.h2
+              key={key}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+                exit: { opacity: 0, y: -20, transition: { duration: 0.4 } },
+              }}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className={`
+                font-fraunces
+                text-3xl sm:text-4xl md:text-5xl lg:text-6xl
+                leading-tight
+                ${headingGradient
+                  ? 'bg-gradient-to-r from-pink-400 to-orange-500 bg-clip-text text-transparent'
+                  : 'text-[#F5A4D4]'}
+              `}
+            >
+              For too long, reproductive health has been framed in a way that feels
+              impersonal and inaccessible.
+            </motion.h2>
 
+            <motion.p
+              key={key + '-body'}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut', delay: 0.2 } },
+                exit: { opacity: 0, y: -20, transition: { duration: 0.4 } },
+              }}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="mt-6 font-satoshi text-lg sm:text-lg md:text-xl text-[#9F8686] max-w-prose leading-relaxed"
+            >
+              {body}
+            </motion.p>
+          </AnimatePresence>
+
+          {/* loader bar stays unchanged */}
           <div className="mt-8 h-1 w-24 bg-gray-700 rounded overflow-hidden">
             <motion.div
               key={index}
