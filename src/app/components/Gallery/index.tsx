@@ -1,7 +1,7 @@
 // src/app/components/GallerySection.tsx
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
@@ -11,23 +11,20 @@ const galleryImages = [
   '3.png',
   '4.png',
   '5.png',
-  '6.png'
+  '6.png',
 ]
 
-export default function GallerySection({slug}: {slug: string}) {
-  // we need two refs so we can drive top and bottom row separately
+export default function GallerySection({ slug }: { slug: string }) {
   const topRef = useRef<HTMLDivElement>(null)
   const botRef = useRef<HTMLDivElement>(null)
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
-  // useScroll can track scroll progress of an element
+  // desktop scroll‐linked animation
   const { scrollYProgress } = useScroll({
     target: topRef,
-    offset: ['start end', 'end start']
+    offset: ['start end', 'end start'],
   })
-
-  // top row moves left as you scroll down
   const xTop = useTransform(scrollYProgress, [0, 1], ['-50%', '0%'])
-  // bottom row moves right as you scroll down
   const xBot = useTransform(scrollYProgress, [0, 1], ['0%', '-50%'])
 
   return (
@@ -36,9 +33,8 @@ export default function GallerySection({slug}: {slug: string}) {
         Gallery
       </h2>
 
-      {/* ───── Desktop scroll-linked rows ───── */}
+      {/* ───── Desktop: scroll‐linked rows ───── */}
       <div className="hidden lg:block">
-        {/* top row */}
         <motion.div
           ref={topRef}
           style={{ x: xTop }}
@@ -58,11 +54,10 @@ export default function GallerySection({slug}: {slug: string}) {
               />
             </div>
           ))}
-          {/* duplicate so we never run out of images when scrolling */}
           {galleryImages.map((src, i) => (
             <div
               key={`top2-${i}`}
-              className="flex-shrink-0 w-64 h-40 md:w-72 md:h-48 relative rounded-lg overflow-hidden"
+              className="flex-shrink-0 w-64 h-40 md:w-72 md:h-48 relative"
             >
               <Image
                 src={`/images/${slug}/${src}`}
@@ -74,16 +69,15 @@ export default function GallerySection({slug}: {slug: string}) {
           ))}
         </motion.div>
 
-        {/* bottom row */}
         <motion.div
           ref={botRef}
           style={{ x: xBot }}
-          className="flex gap-4 mt-6 whitespace-nowrap"
+          className="flex gap-4 mt-6 whitespace-nowrap overflow-hidden px-8"
         >
           {galleryImages.map((src, i) => (
             <div
               key={`bot-${i}`}
-              className="flex-shrink-0 w-64 h-40 md:w-72 md:h-48 relative rounded-lg overflow-hidden"
+              className="flex-shrink-0 w-64 h-40 md:w-72 md:h-48 relative"
             >
               <Image
                 src={`/images/${slug}/${src}`}
@@ -97,7 +91,7 @@ export default function GallerySection({slug}: {slug: string}) {
           {galleryImages.map((src, i) => (
             <div
               key={`bot2-${i}`}
-              className="flex-shrink-0 w-64 h-40 md:w-72 md:h-48 relative rounded-lg overflow-hidden"
+              className="flex-shrink-0 w-64 h-40 md:w-72 md:h-48 relative"
             >
               <Image
                 src={`/images/${slug}/${src}`}
@@ -110,22 +104,42 @@ export default function GallerySection({slug}: {slug: string}) {
         </motion.div>
       </div>
 
-      {/* ───── Mobile: draggable, snap-to-grid ───── */}
-      <div className="lg:hidden overflow-x-auto snap-x snap-mandatory space-x-4 px-4 py-2">
+      {/* ───── Mobile: scroll‐snap carousel + lightbox ───── */}
+      <div className="lg:hidden space-x-4 flex flex-col items-center justify-center space-y-2">
         {galleryImages.map((src, i) => (
           <div
             key={i}
-            className="snap-start flex-shrink-0 w-64 h-40 md:w-72 md:h-48 relative rounded-lg overflow-hidden"
+            className="cursor-pointer"
+            onClick={() => setLightboxIndex(i)}
           >
             <Image
               src={`/images/${slug}/${src}`}
               alt=""
-              fill
-              className="object-cover"
+              height={160}
+              width={320}
+              className="width-full h-auto rounded-lg object-cover"
             />
           </div>
         ))}
       </div>
+
+      {/* ───── Lightbox ───── */}
+      {lightboxIndex !== null && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setLightboxIndex(null)}
+        >
+          <div className="relative w-full max-w-3xl aspect-[4/3]">
+            <Image
+              src={`/images/${slug}/${galleryImages[lightboxIndex]}`}
+              alt=""
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+      )}
     </section>
   )
 }
