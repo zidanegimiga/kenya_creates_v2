@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 interface OverlayMenuProps {
   open: boolean;
@@ -63,30 +64,30 @@ export default function OverlayMenu({ open, onClose }: OverlayMenuProps) {
 
               {/* Menu Items */}
               <div className="mt-6 flex flex-1 flex-col items-end justify-end space-y-10 text-4xl pr-8 pb-4 font-satoshi">
-                <a href="#home" onClick={onClose} className="hover:underline">
+                <Link href="/" onClick={onClose} className="hover:underline">
                   HOME
-                </a>
-                <a
-                  href="#journey"
+                </Link>
+                <Link
+                  href="/our-journey"
                   onClick={onClose}
                   className="hover:underline"
                 >
                   OUR JOURNEY
-                </a>
-                <a href="#about" onClick={onClose} className="hover:underline">
+                </Link>
+                <Link href="/about-us" onClick={onClose} className="hover:underline">
                   ABOUT US
-                </a>
+                </Link>
               </div>
 
               {/* Join the Movement */}
               <div className="mt-6 flex flex-1 flex-col items-end justify-center pr-8">
-                <a
-                  href="#movement"
+                <Link
+                  href="/about-us#form"
                   onClick={onClose}
                   className="font-satoshi block px-8 py-4 text-4xl text-white transition-colors duration-200 hover:bg-white hover:text-[#3b0055]"
                 >
                   JOIN THE MOVEMENT
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -117,27 +118,27 @@ export default function OverlayMenu({ open, onClose }: OverlayMenuProps) {
 
                 <div className="flex flex-col items-end justify-between">
                   <div className="mt-6 flex flex-1 flex-col items-end justify-end space-y-10 text-3xl pb-4 font-satoshi">
-                    <a
-                      href="#home"
+                    <Link
+                      href="/"
                       onClick={onClose}
                       className="hover:underline"
                     >
                       HOME
-                    </a>
-                    <a
-                      href="#journey"
+                    </Link>
+                    <Link
+                      href="/our-journey"
                       onClick={onClose}
                       className="hover:underline"
                     >
                       OUR JOURNEY
-                    </a>
-                    <a
-                      href="#about"
+                    </Link>
+                    <Link
+                      href="/about-us"
                       onClick={onClose}
                       className="hover:underline"
                     >
                       ABOUT US
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
@@ -172,13 +173,13 @@ export default function OverlayMenu({ open, onClose }: OverlayMenuProps) {
 
                 <div className="flex items-center justify-center w-full mt-32">
                   <div className="px-4 pb-8">
-                    <a
-                      href="#movement"
+                    <Link
+                      href="/about-us#form"
                       onClick={onClose}
                       className="block w-full text-center font-satoshi px-6 py-3 text-4xl transition-colors duration-200 hover:bg-white hover:text-[#3b0055]"
                     >
                       JOIN THE MOVEMENT
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

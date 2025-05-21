@@ -1,17 +1,46 @@
-"use client";
+// src/app/components/HeroSection.tsx
+'use client'
 
-import Image from "next/image";
-import { motion } from "framer-motion";
+import Image from 'next/image'
+import { useRef, useMemo } from 'react'
+import { motion, useInView } from 'framer-motion'
+
+const heading = 'KENYA CREATES'
 
 export default function HeroSection() {
+  const containerRef = useRef(null)
+  const isInView = useInView(containerRef, { once: true, margin: '-100px' })
+
+  // split heading into letters
+  const letters = useMemo(() => heading.split(''), [])
+
+  // per-letter variants
+  const letterVariants = {
+    initial: { opacity: 0, y: -50, rotateX: 90 },
+    animate: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: {
+        delay: 0.5 + i * 0.05,
+        type: 'spring',
+        stiffness: 500,
+        damping: 30,
+      },
+    }),
+  }
+
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-[#161220] text-white">
-      {/* Background */}
+    <section
+      ref={containerRef}
+      className="relative h-dvh w-full overflow-hidden bg-[#161220] text-white"
+    >
+      {/* background image */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 1.5 }}
-        className="absolute inset-0 z-10"
+        initial={{ opacity: 0, scale: 1.1 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ duration: 1.8, ease: 'easeOut' }}
+        className="absolute inset-0 z-0"
       >
         <Image
           src="/images/hero_background_image.png"
@@ -22,27 +51,32 @@ export default function HeroSection() {
         />
       </motion.div>
 
-      {/* Content */}
-      <div
-        className="relative z-20 flex h-full w-full flex-col items-center justify-between
-                      px-4 sm:px-6 lg:px-8
-                      text-center"
-      >
-        <motion.h1
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 1.8, ease: "easeOut" }}
-          className="mt-24 sm:mt-32 font-fraunces font-normal leading-[1.1] text-[3.5rem] sm:text-[5rem] md:text-[8rem] lg:text-[10rem] xl:text-[10rem]"
-        >
-          KENYA CREATES
+      {/* content */}
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 text-center">
+        {/* heading letters */}
+        <motion.h1 className="flex flex-wrap justify-center overflow-hidden">
+          {letters.map((char, i) => (
+            <motion.span
+              key={i}
+              custom={i}
+              variants={letterVariants}
+              initial="initial"
+              animate={isInView ? 'animate' : 'initial'}
+              className="inline-block font-fraunces text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] leading-none"
+            >
+              {char === ' ' ? '\u00A0' : char}
+            </motion.span>
+          ))}
         </motion.h1>
 
+        {/* subheading */}
         <motion.p
-          initial={{ opacity: 0, y: 70 }}
-          animate={{ opacity: 1, y: -30 }}
-          transition={{ delay: 2.4, duration: 1.6, ease: "easeOut" }}
-          className="mb-8 sm:mb-10 max-w-xl sm:max-w-2xl text-[1rem] sm:text-[1.25rem] md:text-[1.5rem] leading-snug sm:leading-snug md:leading-tight px-2 sm:px-4 md:px-6  text-white text-center">
-          <span className="font-pangaia italic">Kenya Creates</span>{" "}
+          initial={{ opacity: 0, y: 110, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, y: 60, scale: 1 } : {}}
+          transition={{ delay: 1.4, duration: 1.2, ease: 'backOut' }}
+          className="mt-6 max-w-xl text-base sm:text-lg md:text-xl leading-relaxed font-satoshi text-white"
+        >
+          <span className="font-pangaia italic">Kenya Creates</span>{' '}
           <span className="font-satoshi">
             is a storytelling initiative dedicated to reimagining how Kenyan
             youth talk about their bodies and health.
@@ -50,5 +84,5 @@ export default function HeroSection() {
         </motion.p>
       </div>
     </section>
-  );
+  )
 }
