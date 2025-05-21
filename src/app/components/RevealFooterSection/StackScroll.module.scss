@@ -1,0 +1,46 @@
+// components/StackScroll.module.scss
+.container {
+  background-color: #2E3537;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+:root {
+  --cards: 9;
+  --cardHeight: 87vh;
+  --cardTopPadding: 1.5em;
+  --cardMargin: 4vw;
+}
+
+.stack {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  // We need enough rows to accommodate all cards plus their stacking
+  grid-template-rows: repeat(calc(var(--cards) * 2), var(--cardHeight));
+  gap: var(--cardMargin);
+  padding-bottom: calc(var(--cards) * var(--cardTopPadding));
+  margin-bottom: var(--cardMargin);
+}
+
+.cardItem {
+  position: sticky;
+  top: 0;
+  // Reverse the stacking order by subtracting from total cards
+  padding-top: calc((var(--cards) - var(--index)) * var(--cardTopPadding));
+  grid-row: var(--index); // Position in the grid
+  z-index: calc(var(--cards) - var(--index) + 1); // Higher z-index for earlier cards
+}
+
+.card {
+  box-sizing: border-box;
+  height: var(--cardHeight);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+  background-color: var(--color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
