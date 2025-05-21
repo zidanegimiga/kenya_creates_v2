@@ -1,25 +1,28 @@
 // src/app/films/[slug]/page.tsx
-import { Metadata } from "next";
-import Image from "next/image";
-import { all_films, FilmInterface } from "@/data/films";
-import { notFound } from "next/navigation";
-import YouTubeEmbed from "@/app/components/YoutubeEmbedder";
-import DirectorSection from "@/app/components/DirectorSection";
-import Footer from "@/app/components/Footer";
-import GallerySection from "@/app/components/Gallery";
-import NextFilmsSection from "@/app/components/NextFilms";
+import { Metadata } from "next"
+import Image from "next/image"
+import { notFound } from "next/navigation"
+import YouTubeEmbed from "@/app/components/YoutubeEmbedder"
+import DirectorSection from "@/app/components/DirectorSection"
+import Footer from "@/app/components/Footer"
+import GallerySection from "@/app/components/Gallery"
+import NextFilmsSection from "@/app/components/NextFilms"
+import { all_films } from "@/data/films"
 
 interface Params {
-  slug: string;
+  slug: string
+}
+
+interface FilmPageProps {
+  params: Params
+  searchParams?: { [key: string]: string | string[] | undefined }
 }
 
 export async function generateMetadata({
   params,
-}: {
-  params: Params;
-}): Promise<Metadata> {
-  const film = all_films.find((f) => f.slug === params.slug);
-  if (!film) return {};
+}: FilmPageProps): Promise<Metadata> {
+  const film = all_films.find((f) => f.slug === params.slug)
+  if (!film) return {}
   return {
     title: `${film.title} — Kenya Creates`,
     description: film.description,
@@ -28,12 +31,14 @@ export async function generateMetadata({
       description: film.description,
       images: [{ url: film.bgImage }],
     },
-  };
+  }
 }
 
-export default function FilmDetailPage({ params }: { params: Params }) {
-  const film = all_films.find((f) => f.slug === params.slug);
-  if (!film) return notFound();
+export default function FilmDetailPage({ params }: FilmPageProps) {
+  const film = all_films.find((f) => f.slug === params.slug)
+  if (!film) {
+    notFound()
+  }
 
   return (
     <main className="min-h-screen bg-[#EEE2FF] text-white">
@@ -55,27 +60,25 @@ export default function FilmDetailPage({ params }: { params: Params }) {
             {film.title}
           </h1>
           <p className="font-satoshi text-lg text-[#786C6C]">
-            By {film?.author?.name}
+            By {film.author.name}
           </p>
         </header>
 
-        {/* Description */}
-        {/* <p className="font-satoshi text-base md:text-lg leading-relaxed">
-          {film.description}
-        </p> */}
-
+        {/* Video */}
         <YouTubeEmbed url={film.youtubeUrl} className="mt-8" />
+
+        {/* Director + Synopsis */}
         <DirectorSection
-      directorName={film.author.name}
-      directorImage={film.slug}
-      synopsis={film.description}          // or a longer synopsis field
-      bio={film.author.bio}               // add this in your data model
-    />
+          directorName={film.author.name}
+          directorImage={film.slug}
+          synopsis={film.description}
+          bio={film.author.bio}
+        />
       </section>
-      <GallerySection slug={params.slug}/>
+
+      <GallerySection slug={params.slug} />
       <NextFilmsSection currentSlug={params.slug} />
-      {/* {params.slug} */}
-      <Footer/>
+      <Footer />
     </main>
-  );
+  )
 }
