@@ -1,5 +1,5 @@
 // src/components/OverlayMenu.tsx
-'use client';
+"use client";
 
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -15,7 +15,6 @@ export default function OverlayMenu({ open, onClose }: OverlayMenuProps) {
     <AnimatePresence>
       {open && (
         <>
-          {/* ── Desktop / Tablet ── */}
           <motion.div
             key="overlay-desktop"
             initial={{ y: "-100%" }}
@@ -24,7 +23,78 @@ export default function OverlayMenu({ open, onClose }: OverlayMenuProps) {
             transition={{ duration: 0.6, ease: "easeInOut" }}
             className="hidden md:flex fixed inset-0 z-50 hero-bg-2 text-white h-3/4"
           >
-            {/* ... your existing desktop code unchanged ... */}
+            <div className="h-full flex items-center w-1/2">
+              <div className="flex-none w-1/6 h-full bg-overlay-pattern" />
+
+              <div className="flex-auto h-full flex flex-col items-center justify-center px-4">
+                <div className="relative w-64 h-64 rounded-full overflow-hidden">
+                  <Image
+                    src="/images/people_circle.png"
+                    alt="Kenya Creates"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                <p className="mt-6 max-w-xs text-lg leading-snug text-center font-satoshi">
+                  Kenya Creates is reshaping how Kenyan youth see themselves and
+                  their futures through powerful storytelling. Join the
+                  conversation online using #Kenyacreatesfilms,
+                  #reelstoriesofself, and #SRHRJawareness.
+                </p>
+              </div>
+
+              <div className="flex-none w-1/6 h-full bg-overlay-pattern" />
+            </div>
+
+            <div className="flex flex-col items-end justify-between w-1/2 h-full py-4 pb-16 px-4">
+              {/* Close/Menu Button */}
+              <div className="flex justify-end p-6">
+                <button
+                  onClick={onClose}
+                  className="flex items-center justify-center space-x-3 px-4 py-2"
+                  aria-label="Close menu"
+                >
+                  <div className="text-[24px] font-satoshi mb-6">Menu</div>
+                  <div className="relative h-6 w-6">
+                    <span className="absolute inset-0 block h-[2px] w-full bg-white rotate-45" />
+                    <span className="absolute inset-0 block h-[2px] w-full bg-white -rotate-45" />
+                  </div>
+                </button>
+              </div>
+
+              {/* Menu Items */}
+              <div className="mt-6 flex flex-1 flex-col items-end justify-end space-y-10 text-4xl pr-8 pb-4 font-satoshi">
+                <Link href="/" onClick={onClose} className="hover:underline">
+                  HOME
+                </Link>
+                <Link
+                  href="/our-journey"
+                  onClick={onClose}
+                  className="hover:underline"
+                >
+                  OUR JOURNEY
+                </Link>
+                <Link
+                  href="/about-us"
+                  onClick={onClose}
+                  className="hover:underline"
+                >
+                  ABOUT US
+                </Link>
+              </div>
+
+              {/* Join the Movement */}
+              <div className="mt-6 flex flex-1 flex-col items-end justify-center pr-8">
+                <Link
+                  href="/about-us#form"
+                  onClick={onClose}
+                  className="font-satoshi block px-8 py-4 text-4xl text-white transition-colors duration-200 hover:bg-white hover:text-[#3b0055]"
+                >
+                  JOIN THE MOVEMENT
+                </Link>
+              </div>
+            </div>
           </motion.div>
 
           {/* ── Mobile ── */}
@@ -61,10 +131,18 @@ export default function OverlayMenu({ open, onClose }: OverlayMenuProps) {
                 <Link href="/" onClick={onClose} className="hover:underline">
                   HOME
                 </Link>
-                <Link href="/our-journey" onClick={onClose} className="hover:underline">
+                <Link
+                  href="/our-journey"
+                  onClick={onClose}
+                  className="hover:underline"
+                >
                   OUR JOURNEY
                 </Link>
-                <Link href="/about-us" onClick={onClose} className="hover:underline">
+                <Link
+                  href="/about-us"
+                  onClick={onClose}
+                  className="hover:underline"
+                >
                   ABOUT US
                 </Link>
               </div>
