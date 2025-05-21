@@ -1,12 +1,12 @@
-import HeroSection    from './components/HeroSection'
-import SectionTwo     from './components/SectionTwo'
-import OurFilms       from './components/OurFilms'
-import RotatingWords  from './components/RotatingWords'
-import FilmMakers     from './components/FilmMakers'
-import Partners       from './components/Partners'
-import OurJourney     from './components/OurJourney/OurJourneyComponent'
-import MarqueeSection from './components/MarqueeSection'
-import RevealFooterSection from './components/RevealFooterSection'
+import HeroSection from "./components/HeroSection";
+import SectionTwo from "./components/SectionTwo";
+import OurFilms from "./components/OurFilms";
+import RotatingWords from "./components/RotatingWords";
+import FilmMakers from "./components/FilmMakers";
+import Partners from "./components/Partners";
+import OurJourney from "./components/OurJourney/OurJourneyComponent";
+import MarqueeSection from "./components/MarqueeSection";
+import RevealFooterSection from "./components/RevealFooterSection";
 
 export default function Home() {
   return (
@@ -16,10 +16,10 @@ export default function Home() {
       <OurFilms />
       <RotatingWords />
       <FilmMakers />
-      <Partners />
       <OurJourney />
+      <Partners />
       <MarqueeSection />
       <RevealFooterSection footerHeight={300} />
     </main>
-  )
+  );
 }
