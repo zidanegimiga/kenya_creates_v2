@@ -62,7 +62,7 @@ export default function Footer() {
             <Link href="/" className="hover:underline">Home</Link>
             <Link href="/about-us" className="hover:underline">Our Journey</Link>
             <Link href="/about-us" className="hover:underline">About Us</Link>
-            <Link href="/about-us#form" className="font-semibold hover:underline uppercase">
+            <Link href="/about-us#collaborate" className="font-semibold hover:underline uppercase">
               Join the Movement
             </Link>
           </nav>

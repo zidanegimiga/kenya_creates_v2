@@ -69,7 +69,7 @@ export default function GetInvolved() {
         </p>
         <div className="mt-8 flex justify-center">
           <Link
-            href="/our-journey"
+            href="/about-us#collaborate"
             className="inline-block bg-white text-[#B4009E] font-satoshi font-medium
                        px-8 py-3 rounded-full shadow hover:bg-gray-100 transition"
           >

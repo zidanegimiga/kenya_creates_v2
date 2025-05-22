@@ -87,7 +87,7 @@ export default function OverlayMenu({ open, onClose }: OverlayMenuProps) {
               {/* Join the Movement */}
               <div className="mt-6 flex flex-1 flex-col items-end justify-center pr-8">
                 <Link
-                  href="/about-us#form"
+                  href="/about-us#collaborate"
                   onClick={onClose}
                   className="font-satoshi block px-8 py-4 text-4xl text-white transition-colors duration-200 hover:bg-white hover:text-[#3b0055]"
                 >

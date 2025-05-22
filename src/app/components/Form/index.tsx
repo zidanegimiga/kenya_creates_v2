@@ -83,6 +83,7 @@ export default function CollaborateSection() {
         <motion.div
           className="w-full md:w-1/2 px-6 md:px-12 flex items-center"
           variants={fadeInRight}
+          id='collaborate'
         >
           <form
             onSubmit={handleSubmit}
