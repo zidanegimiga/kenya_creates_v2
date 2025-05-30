@@ -32,7 +32,7 @@ const partners: Partner[] = [
   {
     id: "jhr",
     name: "Journalists for Human Rights (JHR)",
-    logoSrc: "/images/jhr_logo.png.png",
+    logoSrc: "/images/jhr_logo.png.svg",
     description:
       "JHR- offered dedicated mentorship to Kenya Creates journalists, fostering robust investigative storytelling that amplifies the voices of Kenya’s youth",
     url: "https://jhr.ca/",
