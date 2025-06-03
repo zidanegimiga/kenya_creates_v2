@@ -67,8 +67,8 @@ export default function SectionTwo() {
         <div
           className={`
             ${styles.textContainer}
-            w-full md:w-1/2
-            px-6 sm:px-8 md:px-12
+            w-full
+            px-6 sm:px-2 md:px-2
             flex flex-col items-center md:items-start
           `}
         >
@@ -85,7 +85,7 @@ export default function SectionTwo() {
               exit="exit"
               className={`
                 font-fraunces
-                text-3xl sm:text-4xl md:text-5xl lg:text-6xl
+                text-3xl sm:text-3xl md:text-3xl lg:text-4xl
                 leading-tight
                 ${headingGradient
                   ? 'bg-gradient-to-r from-pink-400 to-orange-500 bg-clip-text text-transparent'
@@ -124,16 +124,6 @@ export default function SectionTwo() {
             </motion.p>
           </AnimatePresence>
 
-          {/* loader bar */}
-          <div className="mt-8 h-1 w-24 bg-gray-700 rounded overflow-hidden">
-            <motion.div
-              key={index}
-              initial={{ width: 0 }}
-              animate={{ width: '100%' }}
-              transition={{ duration: 5, ease: 'linear' }}
-              className="h-full bg-gradient-to-r from-pink-400 via-pink-500 to-orange-500"
-            />
-          </div>
         </div>
       </div>
     </section>
