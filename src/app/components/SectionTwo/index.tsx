@@ -37,8 +37,8 @@ export default function SectionTwo() {
   const { key, imageSrc, headingGradient, body } = slides[index]
 
   return (
-    <section className="bg-[#1E1F1D] h-dvh overflow-hidden">
-      <div className="flex h-full items-center justify-center">
+    <section className="bg-[#1E1F1D] h-dvh overflow-hidden w-full">
+      <div className="flex h-full items-center justify-center w-full">
         {/* ── IMAGE (hidden on mobile) ── */}
         <AnimatePresence initial={false} mode="wait">
           <motion.div

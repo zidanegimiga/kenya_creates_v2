@@ -12,4 +12,9 @@
     width: 60%;
     height: 100dvh;
     gap: 20px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        
+    }
 }
