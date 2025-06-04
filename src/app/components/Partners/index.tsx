@@ -82,7 +82,7 @@ export default function Partners() {
               <p className="font-satoshi text-base text-white mb-2">
                 Our Partners
               </p>
-              <h2 className="font-fraunces text-6xl text-[#F868C1] leading-tight">
+              <h2 className="font-fraunces text-4xl text-[#F868C1] leading-tight">
                 The People who make this possible
               </h2>
             </div>

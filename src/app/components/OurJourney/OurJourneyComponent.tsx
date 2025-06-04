@@ -52,7 +52,7 @@ export function JourneyCard({
         hover: { borderRadius: '1rem', backgroundColor: '#DFC0E8' },
       }}
       transition={{ duration: 0.3 }}
-      className="group relative overflow-hidden rounded-lg cursor-pointer"
+      className="group relative overflow-hidden rounded-lg cursor-pointer border-3"
     >
       <div className="relative w-full h-40 sm:h-64 md:h-56">
         {hasImage ? (
