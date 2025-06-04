@@ -21,7 +21,7 @@ export default function OverlayMenu({ open, onClose }: OverlayMenuProps) {
             animate={{ y: 0 }}
             exit={{ y: "-100%" }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="hidden md:flex fixed inset-0 z-50 hero-bg-2 text-white h-3/4"
+            className="hidden md:flex fixed inset-0 z-50 hero-bg-2 text-white h-full"
           >
             <div className="h-full flex items-center w-1/2">
               <div className="flex-none w-1/6 h-full bg-overlay-pattern" />
@@ -36,7 +36,7 @@ export default function OverlayMenu({ open, onClose }: OverlayMenuProps) {
                     priority
                   />
                 </div>
-                <p className="mt-6 max-w-xs text-lg leading-snug text-center font-satoshi">
+                <p className="mt-6 max-w-xs text-[14px] leading-snug text-center font-satoshi">
                   Kenya Creates is reshaping how Kenyan youth see themselves and
                   their futures through powerful storytelling. Join the
                   conversation online using #Kenyacreatesfilms,
@@ -64,9 +64,23 @@ export default function OverlayMenu({ open, onClose }: OverlayMenuProps) {
               </div>
 
               {/* Menu Items */}
-              <div className="mt-6 flex flex-1 flex-col items-end justify-end space-y-10 text-4xl pr-8 pb-4 font-satoshi">
+              <div className="mt-6 flex flex-1 flex-col items-end justify-end space-y-10 text-2xl pr-8 pb-4 font-satoshi">
                 <Link href="/" onClick={onClose} className="hover:underline">
                   HOME
+                </Link>
+                 <Link
+                  href="/about-us"
+                  onClick={onClose}
+                  className="hover:underline"
+                >
+                  ABOUT US
+                </Link>
+                <Link
+                  href="/#our_films"
+                  onClick={onClose}
+                  className="hover:underline"
+                >
+                  OUR FILMS
                 </Link>
                 <Link
                   href="/our-journey"
@@ -75,13 +89,6 @@ export default function OverlayMenu({ open, onClose }: OverlayMenuProps) {
                 >
                   OUR JOURNEY
                 </Link>
-                <Link
-                  href="/about-us"
-                  onClick={onClose}
-                  className="hover:underline"
-                >
-                  ABOUT US
-                </Link>
               </div>
 
               {/* Join the Movement */}
@@ -89,7 +96,7 @@ export default function OverlayMenu({ open, onClose }: OverlayMenuProps) {
                 <Link
                   href="/about-us#collaborate"
                   onClick={onClose}
-                  className="font-satoshi block px-8 py-4 text-4xl text-white transition-colors duration-200 hover:bg-white hover:text-[#3b0055]"
+                  className="font-satoshi block px-8 py-4 text-3xl text-white transition-colors duration-200 hover:bg-white hover:text-[#3b0055]"
                 >
                   JOIN THE MOVEMENT
                 </Link>
