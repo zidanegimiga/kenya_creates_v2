@@ -15,20 +15,20 @@ export default function FilmCard({
   const ig = bgImage.split("/")[2].split(".")[0];
 
   return (
-    <div className="w-full">
-      <div className="relative">
+    <div className="w-full h-full">
+      <div className="relative w-full h-full">
         <Image
           src={`/images/${bgImage.split("/")[2]}`}
           alt={`${title} background`}
-          width={900}
-          height={640}
-          className="w-full h-[100vh] sm:h-[60vh] md:h-[100vh] object-cover object-center"
-          sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 50vw"
+          width={1200}
+          height={600}
+          className="w-full h-full"
+          // sizes="(max-width: 1200px) 100vw 100, (max-width: 768px) 80vw, 50vw"
         />
       </div>
 
       {/* Card */}
-      <div className="relative w-full min-h-[320px] max-h-[90vh] sm:min-h-[320px]">
+      <div className="relative w-full h-full">
         <div
           className="relative z-10 flex h-full flex-col justify-between items-center text-center px-4 py-6 sm:px-6 sm:py-10 bg-[#1E1F1D]/90"
         >
