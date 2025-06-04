@@ -7,6 +7,7 @@ import { UserIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
 import { useEffect, useMemo } from 'react'
 import { labeledStories } from '@/data/stories'
+import { useRouter } from 'next/navigation'
 
 // ─── JourneyCard (unchanged) ───
 export interface JourneyCardProps {
@@ -41,6 +42,8 @@ export function JourneyCard({
   useEffect(() => {
     console.log('JourneyCard', { type, imageSrc, name, description, title, href, slug })
   }, [])
+
+  const router = useRouter()
 
   return (
     <motion.div
@@ -82,13 +85,13 @@ export function JourneyCard({
         <span className="absolute top-2 left-2 z-10 px-3 py-1 rounded-full bg-[#FCE3F2] text-xs font-spacemono font-semibold text-[#63416E] transition-colors duration-200">
           {type}
         </span>
-        <Link
-          href={href}
+        <div
+          onClick={() => router.push(href)}
           aria-label={`Learn more about ${title ?? name}`}
-          className="absolute top-2 right-2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/0 opacity-0 transition-all duration-200 group-hover:bg-white/30 group-hover:opacity-100"
+          className="absolute top-2 right-2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/0 opacity-0 transition-all duration-200 group-hover:bg-white/30 group-hover:scale-50 group-hover:opacity-100"
         >
           <ArrowRightIcon className="w-5 h-5 -rotate-45 text-white" />
-        </Link>
+        </div>
       </div>
       <div className="p-4 space-y-3">
         <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#DFC0E8] transition-colors duration-200 group-hover:bg-[#ceafff]">

@@ -4,9 +4,12 @@
 import { useRef, useState, useEffect } from "react";
 import FilmCard from "./FilmCard";
 import { all_films } from "@/data/films";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function OurFilms() {
   const HEADER_HEIGHT = 240;
+  const router = useRouter();
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
@@ -62,7 +65,11 @@ export default function OurFilms() {
       <div className="overflow-y-auto">
         {all_films.map((film) => (
           <div key={film.id} className="snap-start h-full">
-            <FilmCard {...film} />
+            <div
+            onClick={()=> { router.push(`/films/${film.slug}`) }}
+            >
+              <FilmCard {...film} />
+            </div>
           </div>
         ))}
       </div>

@@ -45,7 +45,7 @@ export default function FilmCard({
 
           <Link href={`/films/${slug}`}>
             <div
-              className="my-6 sm:my-8 inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-500/50 hover:bg-gray-500/75 transition -rotate-45"
+              className="my-6 sm:my-8 inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-500/50 hover:bg-gray-500/75 hover:scale-125 transition -rotate-45"
               aria-label={`Watch ${title}`}
             >
               <svg
