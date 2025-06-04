@@ -170,7 +170,9 @@ export default function OurJourney() {
         <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.filter(item => item.type === 'INTERVIEW').slice(0, 3).map(item => (
             <motion.div key={item.href} variants={itemVariants}>
-              <JourneyCard {...item} />
+              <a href={item.href} target='_blank'>
+                <JourneyCard {...item} />
+              </a>
             </motion.div>
           ))}
         </motion.div>
