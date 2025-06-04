@@ -43,7 +43,7 @@ export default function OurJourneySection({ cards }: OurJourneySectionProps) {
   return (
     <section>
       {/* ─── Sticky header ─── */}
-      <div className="sticky top-0 bg-[#F1EBFF] z-20 border-b border-gray-200">
+      <div className=" bg-[#F1EBFF] z-20 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <h2 className="text-3xl font-fraunces text-[#531550]">Our Journey</h2>
           <p className="mt-2 font-satoshi text-gray-600">
@@ -71,7 +71,7 @@ export default function OurJourneySection({ cards }: OurJourneySectionProps) {
               ))}
             </div>
             <motion.div
-              className="absolute bottom-0 h-1 bg-[#531550] rounded"
+              className="h-1 bg-[#531550] rounded"
               layout
               transition={{ type: 'spring', stiffness: 500, damping: 30 }}
               style={{

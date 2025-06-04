@@ -47,7 +47,6 @@ export default function JourneyPage() {
       {/* ─── Sticky Tab Bar ─── */}
 <header
   className="
-    sticky top-16 z-40
     w-full
     px-4       /* mobile: 1rem each side */
     sm:px-6    /* small+: 1.5rem */
