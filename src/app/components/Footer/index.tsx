@@ -118,7 +118,7 @@ export default function Footer() {
         {/* Row 3 */}
         <div className="md:items-center flex md:text-center text-left flex-col md:flex-row justify-start md:justify-between text-[12px] space-y-2 md:space-y-0">
           <p>Copyright © 2025 Docubox. All rights reserved</p>
-          <Link href="/privacy" className="hover:underline">
+          <Link href="/privacy-policy" className="hover:underline">
             Privacy Policy
           </Link>
         </div>
