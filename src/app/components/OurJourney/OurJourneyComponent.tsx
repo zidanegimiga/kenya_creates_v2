@@ -65,11 +65,19 @@ export function JourneyCard({
             priority
           />
         ) : (
-          <div className="absolute inset-0 bg-gray-300 flex items-center justify-center rounded-lg">
-            <span className="text-3xl sm:text-4xl font-semibold text-gray-700">
-              {initials}
-            </span>
-          </div>
+          // <div className="absolute inset-0 bg-gray-300 flex items-center justify-center rounded-lg">
+          //   <span className="text-3xl sm:text-4xl font-semibold text-gray-700">
+          //     {initials}
+          //   </span>
+          // </div>
+          <Image
+            src={`/stories/not-found.png`}
+            alt={title ?? name}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover rounded-lg"
+            priority
+          />
         )}
         <span className="absolute top-2 left-2 z-10 px-3 py-1 rounded-full bg-[#FCE3F2] text-xs font-spacemono font-semibold text-[#63416E] transition-colors duration-200">
           {type}
@@ -160,7 +168,7 @@ export default function OurJourney() {
         </motion.div>
 
         <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filtered.map(item => (
+          {filtered.filter(item => item.type === 'ARTICLE').map(item => (
             <motion.div key={item.href} variants={itemVariants}>
               <JourneyCard {...item} />
             </motion.div>
