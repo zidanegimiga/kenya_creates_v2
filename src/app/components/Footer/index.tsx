@@ -21,7 +21,7 @@ export default function Footer() {
       </div>
 
       {/* Content */}
-      <div className="relative px-4 md:px-12 sm:px-4 pt-48 pb-12 lg:px-12 space-y-8 w-full">
+      <div className="relative px-4 md:px-12 sm:px-4 pt-32 pb-12 lg:px-12 space-y-8 w-full">
         {/* Row 1 */}
         <div className="flex flex-col sm:flex-row w-full justify-between items-start space-y-4 sm:space-y-0">
           <Image
@@ -62,7 +62,7 @@ export default function Footer() {
             <Link href="/" className="hover:underline inline-block">
               Home
             </Link>
-            <Link href="/about-us" className="hover:underline inline-block">
+            <Link href="/our-journey" className="hover:underline inline-block">
               Our Journey
             </Link>
             <Link href="/about-us" className="hover:underline inline-block">

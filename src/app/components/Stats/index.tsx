@@ -50,12 +50,12 @@ export default function WhoWeAreSection() {
       viewport={{ once: true, amount: 0.3 }}
       variants={container}
     >
-      <div className="max-w-7xl mx-auto px-4 py-16 lg:py-24">
+      <div className="max-w-7xl mx-auto px-6 py-16 lg:py-24">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-24">
           <div className="space-y-6">
             <motion.h1
               variants={fadeInUp}
-              className="font-fraunces text-3xl leading-tight md:text-5xl lg:text-6xl"
+              className="font-fraunces text-3xl leading-tight md:text-4xl lg:text-5xl"
             >
               Kenya Creates: Who We Are and
               <br /> Why We Matter
@@ -87,7 +87,7 @@ export default function WhoWeAreSection() {
                 <dt className="font-satoshi text-sm uppercase tracking-wide text-gray-400">
                   {label}
                 </dt>
-                <dd className="mt-2 font-fraunces text-4xl md:text-5xl lg:text-6xl">
+                <dd className="mt-2 font-fraunces text-3xl md:text-4xl lg:text-4xl">
                   {value}
                 </dd>
               </motion.div>

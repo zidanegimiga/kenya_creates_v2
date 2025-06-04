@@ -92,7 +92,7 @@ export default function TheoryOfChangeSection() {
           {images.map((src, idx) => (
             <motion.div
               key={idx}
-              className="group relative overflow-hidden h-48 sm:h-64 md:h-80 rounded-lg shadow-lg"
+              className="group relative overflow-hidden h-48 sm:h-64 md:h-80 rounded-lg sm:rounded-none shadow-lg"
               variants={card}
               whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}

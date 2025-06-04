@@ -37,12 +37,12 @@ export default function GetInvolved() {
       variants={container}
     >
       {/* ── Image block ── */}
-      <motion.div variants={child} className="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] relative">
+      <motion.div variants={child} className="w-full h-60 sm:h-80 md:h-96 lg:h-[400px] relative">
         <Image
           src="/images/group_banner_photo.png"
           alt="Kenya Creates people"
           fill
-          className="object-cover object-center"
+          className="object-cover object-top"
           priority
         />
       </motion.div>
@@ -52,8 +52,7 @@ export default function GetInvolved() {
         variants={child}
         className={`
           relative 
-          bg-[#B4009E] text-white 
-          rounded-bl-[3rem] rounded-r-[3rem]
+          bg-[#B4009E] text-white rounded-b-[3rem]
           -mt-12 sm:-mt-16 md:-mt-20
           pt-16 sm:pt-20 md:pt-24
           pb-12 sm:pb-16 md:pb-20
@@ -61,7 +60,7 @@ export default function GetInvolved() {
           z-20
         `}
       >
-        <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-5xl text-center">
+        <h2 className="font-spacemono uppercase text-3xl sm:text-4xl lg:text-5xl text-center">
           Get Involved
         </h2>
         <p className="mt-4 max-w-3xl mx-auto font-satoshi text-base sm:text-lg md:text-xl text-center leading-relaxed">
