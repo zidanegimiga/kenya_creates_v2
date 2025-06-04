@@ -1,4 +1,25 @@
 export const stories: Story[] = [
+    {
+    name: "Adelle's Interview | Kenya Creates Project",
+    url: "https://youtu.be/93wWs6YBjv0",
+    theme: "Home",
+    outlet: "youtube",
+    slug: "our_journey_adelle.png",
+  },
+  {
+    name: "Abigail's Interview | Kenya Creates Project",
+    url: "https://youtu.be/mzRiEP4SgZE",
+    theme: "Bella is Dying",
+    outlet: "youtube",
+    slug: "abs.png",
+  },
+  {
+    name: "Ty's Interview | Kenya Creates Project",
+    url: "https://youtu.be/SLzNYQHLVCE",
+    theme: "Know Thy Body",
+    outlet: "youtube",
+    slug: "ty.png",
+  },
   {
     name: "Ivan Lucy Okeyo",
     url: "https://nax.today/features/article/2184/stepping-stone-women-group-lifting-voices-silenced-by-hiv-stigma",
@@ -10,7 +31,7 @@ export const stories: Story[] = [
     name: "Asha Bekidusa",
     url: "https://soundcloud.com/shaekidusa/makala-ukosefu-wa-nyumba",
     theme: "Access to Services and Safe space after SGBV",
-    outlet: "soundcloud.com",
+    outlet: "soundcloud",
     slug: "asha-bekidusa.jpg",
   },
   {
@@ -31,7 +52,7 @@ export const stories: Story[] = [
     name: "Jemimah Lauzi",
     url: "https://soundcloud.com/jmmhlauz/makala-ya-chachu-ya-ufufuaji-social_sharing&si=a25d9b34718943ab9b8ee9a684782fa1",
     theme: "Access to SRHR",
-    outlet: "soundcloud.com",
+    outlet: "soundcloud",
     slug: "",
   },
   {
@@ -59,7 +80,7 @@ export const stories: Story[] = [
     name: "Cynthia Ouma",
     url: "https://afripods.com/episode/the-pain-we-do-not-talk-about",
     theme: "The Pain We Don't Talk About: How much pain is normal for period pain",
-    outlet: "afripods.com",
+    outlet: "afripods",
     slug: "cynthia-ouma.jpg",
   },
   {
@@ -73,7 +94,7 @@ export const stories: Story[] = [
     name: "Kimani Karanja",
     url: "https://soundcloud.com/kimani-karanja-248529376/reusable-pads-restoring-dignity-among-refugee-girls-in-kakuma",
     theme: "Reusable Pads Restoring Dignity among Refugee Girls in Kakuma",
-    outlet: "soundcloud.com",
+    outlet: "soundcloud",
     slug: "",
   },
   {
@@ -108,7 +129,7 @@ export const stories: Story[] = [
     name: "Radio Salaam FM",
     url: "https://soundcloud.com/shaekidusa/makala-mimba-za-ujauzito",
     theme: "Adolescent Sexual and Reproductive Health and Rights (ASRHR)",
-    outlet: "soundcloud.com",
+    outlet: "soundcloud",
     slug: "",
   },
   {
@@ -129,7 +150,7 @@ export const stories: Story[] = [
     name: "Makala Haki Butu",
     url: "https://soundcloud.com/jmmhlauz/makala-haki-butu?si=ae693976bb2",
     theme: "GBV, access to Justice and legal address",
-    outlet: "soundcloud.com",
+    outlet: "soundcloud",
     slug: "gbv-access-to-justice-and-legal-address.jpg",
   },
 //   {
@@ -157,7 +178,7 @@ export const stories: Story[] = [
     name: "Radio Mikayi",
     url: "https://afripods.com/episode/how-empowering-adolescent-teen-girls-to-prevent-early-pregnancies-through-srhr-education",
     theme: "Knowledge is Power: Empowering Teen Girls to Prevent Early Pregnancies through SRHR Education",
-    outlet: "afripods.com",
+    outlet: "afripods",
     slug: "radio-mikayi.jpg",
   },
   {
@@ -171,7 +192,7 @@ export const stories: Story[] = [
     name: "SIFA FM 101.1 ATOO",
     url: "https://on.soundcloud.com/CVseQEu5pKzqSvL",
     theme: "Child Spacing and Polygamy in Turkana",
-    outlet: "on.soundcloud.com",
+    outlet: "soundcloud",
     slug: "",
   },
 //   {
@@ -202,15 +223,17 @@ export interface Story {
   url: string
   theme: string | null
   outlet: string
-  type?: 'podcast' | 'article'
-    slug: string
+  type?: 'podcast' | 'article' | 'interview'
+  slug: string
 }
 
 export const labeledStories: Story[] = stories.map(story => {
   const u = story.url.toLowerCase()
-  const isPodcast = /soundcloud\.com|afripods\.com/.test(u)
+  const isPodcast = story.outlet === "soundcloud" || story.outlet === "afripods"
+  const isArtistInterview = story.outlet === "youtube"
+
   return { 
     ...story, 
-    type: isPodcast ? 'podcast' : 'article' 
+    type: isPodcast ? 'podcast' : isArtistInterview ? 'interview' : "article"
   }
 })

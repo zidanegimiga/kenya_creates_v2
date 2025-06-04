@@ -48,34 +48,34 @@ export default function JourneyPage() {
       {/* ─── Sticky Tab Bar ─── */}
       <header
         className="
-    w-full
-    px-4       /* mobile: 1rem each side */
-    sm:px-6    /* small+: 1.5rem */
-    lg:px-40   /* large+: 10rem */
-    bg-[#EEE2FF]
-    border-b border-gray-200
-  "
+          w-full
+          px-4       /* mobile: 1rem each side */
+          sm:px-6    /* small+: 1.5rem */
+          lg:px-40   /* large+: 10rem */
+          bg-[#EEE2FF]
+          border-b border-gray-200
+        "
       >
         <nav
           className="
-      flex justify-center   /* center tabs */
-      space-x-8
-      relative pt-4
-      border-b border-[#DFC0E8]
-    "
+            flex justify-center   /* center tabs */
+            space-x-8
+            relative pt-4
+            border-b border-[#DFC0E8]
+          "
         >
           {TABS.map(({ key, label }) => (
             <button
               key={key}
               onClick={() => setTab(key)}
               className={`
-          font-satoshi text-lg pb-2
-          ${
-            tab === key
-              ? "text-[#63416E] font-bold"
-              : "text-[#AC8CB6] font-medium"
-          }
-        `}
+                font-satoshi text-lg pb-2
+                ${
+                  tab === key
+                    ? "text-[#63416E] font-bold"
+                    : "text-[#AC8CB6] font-medium"
+                }
+            `}
             >
               <span className="relative">
                 {label}
