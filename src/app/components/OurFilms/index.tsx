@@ -39,7 +39,6 @@ export default function OurFilms() {
     <section className="w-full" ref={containerRef}>
       <div
         className="
-          sticky top-0 z-20
           bg-black
           flex flex-col justify-evenly items-center
           h-[30vh]      /* mobile: occupy half the viewport height */

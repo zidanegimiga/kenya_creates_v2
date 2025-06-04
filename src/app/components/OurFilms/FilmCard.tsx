@@ -20,15 +20,15 @@ export default function FilmCard({
         <Image
           src={`/images/${bgImage.split("/")[2]}`}
           alt={`${title} background`}
-          width={1000}
-          height={560}
-          className="w-full h-[30vh] sm:h-[40vh] md:h-[50vh] object-cover object-center"
+          width={900}
+          height={640}
+          className="w-full h-[100vh] sm:h-[60vh] md:h-[100vh] object-cover object-center"
           sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 50vw"
         />
       </div>
 
       {/* Card */}
-      <div className="relative w-full min-h-[280px] max-h-[80vh] sm:min-h-[320px]">
+      <div className="relative w-full min-h-[320px] max-h-[90vh] sm:min-h-[320px]">
         <div
           className="relative z-10 flex h-full flex-col justify-between items-center text-center px-4 py-6 sm:px-6 sm:py-10 bg-[#1E1F1D]/90"
         >
