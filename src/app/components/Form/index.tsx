@@ -49,7 +49,7 @@ export default function CollaborateSection() {
     setShowToast(true)
 
     try {
-      const response = await fetch('http://159.223.75.236:4000/send-email', {
+      const response = await fetch('https://api.kenyacreates.org/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
