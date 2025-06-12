@@ -47,7 +47,7 @@ export default function HeroSection() {
           src="/images/hero_background_image.png"
           alt="Kenya Creates"
           fill
-          className="object-cover"
+          className="object-cover object-top"
           priority
         />
       </motion.div>
